@@ -1,13 +1,13 @@
 // src/components/PostList.js
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Pagination from './Pagination';
+import LikeButton from './LikeButton';
 
 const Container = styled.div`
   margin-top: 2rem;
 `;
 
-const Post = styled.div`
+const PostContainer = styled.div`
   border: 1px solid #ccc;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -21,28 +21,35 @@ const Content = styled.p`
   color: #333;
 `;
 
-const PostList = ({ posts, postsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const posts = [
+  {
+    id: 1,
+    title: "How to Propagate Succulents",
+    author: "Jane Doe",
+    date: "February 18, 2024",
+    content: "Succulents are easy to propagate through stem or leaf cuttings. Make sure to use well-draining soil and water sparingly until roots develop.",
+  },
+  {
+    id: 2,
+    title: "Tips for Pruning Roses",
+    author: "John Smith",
+    date: "February 20, 2024",
+    content: "Pruning roses promotes healthy growth and flowering. Remember to remove dead or diseased branches and cut at a 45-degree angle just above a bud.",
+  },
+  // Add more posts as needed
+];
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-  const paginate = pageNumber => setCurrentPage(pageNumber);
-
+const PostList = ({ posts }) => {
   return (
     <Container>
-      {currentPosts.map((post, index) => (
-        <Post key={index}>
-          <Title>{post.title}</Title>
-          <Content>{post.content}</Content>
-        </Post>
+      {posts && posts.map((post, index) => (
+        <PostContainer key={index}>
+          <Title>post.title</Title>
+          <Content>post.content</Content>
+          {/* Render LikeButton for each post */}
+          <LikeButton initialLikes={post.likes} />
+        </PostContainer>
       ))}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(posts.length / postsPerPage)}
-        onPageChange={paginate}
-      />
     </Container>
   );
 };
