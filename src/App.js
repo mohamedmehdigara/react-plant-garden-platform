@@ -7,6 +7,7 @@ import UserProfile from './components/UserProfile';
 import PostDetail from './components/PostDetail';
 import TagList from './components/TagList';
 import UserPosts from './components/UserPosts';
+import NotificationBanner from './components/NotificationBanner';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
       <PostDetail/>
       <TagList/>
       <UserPosts/>
+      <NotificationBanner message="Important announcement: We are offering a special promotion this week!" />
+
     </div>
   );
 }
