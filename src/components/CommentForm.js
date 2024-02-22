@@ -34,16 +34,28 @@ const Button = styled.button`
 `;
 
 const CommentForm = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [comment, setComment] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    comment: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, email, comment });
-    setName('');
-    setEmail('');
-    setComment('');
+    onSubmit(formData);
+    setFormData({
+      name: '',
+      email: '',
+      comment: ''
+    });
   };
 
   return (
@@ -54,22 +66,25 @@ const CommentForm = ({ onSubmit }) => {
         <Input
           type="text"
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
           required
         />
         <Label htmlFor="email">Email:</Label>
         <Input
           type="email"
           id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
         />
         <Label htmlFor="comment">Comment:</Label>
         <TextArea
           id="comment"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          name="comment"
+          value={formData.comment}
+          onChange={handleChange}
           rows="4"
           required
         />
@@ -77,6 +92,6 @@ const CommentForm = ({ onSubmit }) => {
       </Form>
     </FormContainer>
   );
-}
+};
 
 export default CommentForm;

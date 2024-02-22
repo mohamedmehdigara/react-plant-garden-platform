@@ -9,10 +9,24 @@ const FooterContainer = styled.footer`
   text-align: center;
 `;
 
+const SocialMediaLinks = styled.div`
+  margin-top: 1rem;
+`;
+
+const SocialMediaLink = styled.a`
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1rem;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const Footer = () => {
   return (
     <FooterContainer>
       <p>&copy; 2024 Plant & Garden Enthusiasts. All rights reserved.</p>
+     
     </FooterContainer>
   );
 }
