@@ -76,27 +76,38 @@ const Home = () => (
   </div>
 );
 
-const UserPosts = (posts) => (
-  <div>
-    <h2>Posts</h2>
+const UserPosts = ({ posts }) => {
+  const Container = styled.div`
+  margin-top: 2rem;
+`;
 
+const PostContainer = styled.div`
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding: 1rem;
+`;
 
+const Title = styled.h2`
+  margin-top: 0;
+`;
+
+const Content = styled.p`
+  color: #333;
+`;
 
   return (
+    <Container>
       <h2>User Posts</h2>
       {posts && posts.map((post, index) => (
-        <div>
+        <PostContainer key={index}>
           <Title>{post.title}</Title>
-          <div>{post.content}</div>
+          <Content>{post.content}</Content>
           <p>Author: {post.author}</p>
-          </div>
+        </PostContainer>
       ))}
+    </Container>
   );
-
-
-    {/* Add Posts content here */}
-  </div>
-);
+}
 
 const AboutSection = () => (
   <div>
