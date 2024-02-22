@@ -1,5 +1,5 @@
 // src/components/Header.js
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
@@ -35,26 +35,67 @@ const NavLink = styled.a`
   color: #fff;
   text-decoration: none;
   margin-left: 1.5rem;
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
 `;
 
 const Header = () => {
+  const [activeSection, setActiveSection] = useState('home');
+
+  const handleNavigation = (section) => {
+    setActiveSection(section);
+  };
+
   return (
     <HeaderContainer>
       <Logo>
+        <LogoImage src="/logo.svg" alt="Plant & Garden Enthusiasts Logo" />
         <Title>Plant & Garden Enthusiasts</Title>
       </Logo>
       <Navigation>
-        <NavLink href="#">Home</NavLink>
-        <NavLink href="#">Posts</NavLink>
-        <NavLink href="#">About Us</NavLink>
-        <NavLink href="#">Contact</NavLink>
+        <NavLink onClick={() => handleNavigation('home')}>Home</NavLink>
+        <NavLink onClick={() => handleNavigation('posts')}>Posts</NavLink>
+        <NavLink onClick={() => handleNavigation('about')}>About Us</NavLink>
+        <NavLink onClick={() => handleNavigation('contact')}>Contact</NavLink>
       </Navigation>
+      <div>
+        {activeSection === 'home' && <HomeSection />}
+        {activeSection === 'posts' && <PostsSection />}
+        {activeSection === 'about' && <AboutSection />}
+        {activeSection === 'contact' && <ContactSection />}
+      </div>
     </HeaderContainer>
   );
 }
 
-export default Header;
+const HomeSection = () => (
+  <div>
+    <h2>Home</h2>
+    {/* Add Home content here */}
+  </div>
+);
 
+const PostsSection = () => (
+  <div>
+    <h2>Posts</h2>
+    {/* Add Posts content here */}
+  </div>
+);
+
+const AboutSection = () => (
+  <div>
+    <h2>About Us</h2>
+    {/* Add About Us content here */}
+  </div>
+);
+
+const ContactSection = () => (
+  <div>
+    <h2>Contact</h2>
+    {/* Add Contact content here */}
+  </div>
+);
+
+export default Header;
