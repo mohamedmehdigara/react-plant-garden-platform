@@ -10,11 +10,11 @@ const Container = styled.div`
 const SearchResult = ({ results }) => {
   return (
     <Container>
-      {results.length === 0 ? (
+      {results && results.length === 0 ? (
         <p>No results found</p>
       ) : (
         results && results.map((post, index) => (
-          <PostList key={index}  />
+          <PostList key={index} post={post} /> // Pass the post data as props to the PostList component
         ))
       )}
     </Container>

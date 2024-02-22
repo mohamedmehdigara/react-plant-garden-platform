@@ -2,7 +2,6 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import PostDetail from './components/PostDetail';
 import TagList from './components/TagList';
@@ -13,7 +12,6 @@ function App() {
   return (
     <div>
       <Header />
-      <Home />
       <UserProfile />
       <Footer />
       <PostDetail/>
